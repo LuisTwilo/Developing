@@ -16,13 +16,15 @@ exports.execute = (req, res) => {
         params = req.body.text.split(";"),
         subject = params[0],
         description = params[1],
-        img = params[2];
+        img = params[2],
+        urls = params[3];
 
     force.create(oauthObj, "Case",
         {
             subject: subject,
             description: description,
             img__c : '<img src = "'+ img + '" alt = "img">',
+            urls__c : urls,
             origin: "Slack",
             status: "New"
         })
@@ -31,6 +33,7 @@ exports.execute = (req, res) => {
             fields.push({title: "Subject", value: subject, short:false});
             fields.push({title: "Description", value: description, short:false});
             fields.push({title: "img", value: img, short:false})
+            fields.push({title: "urls", value: urls, short:false})
             fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + data.id, short:false});
             let message = {
                 text: "A new case has been created:",
