@@ -13,7 +13,7 @@ exports.execute = (req, res) => {
 
     let slackUserId = req.body.user_id,
         oauthObj = auth.getOAuthObject(slackUserId),
-        params = req.body.text.split(":"),
+        params = req.body.text.split(";"),
         subject = params[0],
         description = params[1],
         img = params[2];
