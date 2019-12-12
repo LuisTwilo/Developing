@@ -22,7 +22,7 @@ exports.execute = (req, res) => {
         {
             subject: subject,
             description: description,
-            img : img,
+            img__c : img,
             origin: "Slack",
             status: "New"
         })
@@ -30,6 +30,7 @@ exports.execute = (req, res) => {
             let fields = [];
             fields.push({title: "Subject", value: subject, short:false});
             fields.push({title: "Description", value: description, short:false});
+            fields.push({title: "img", value: img, short:false})
             fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + data.id, short:false});
             let message = {
                 text: "A new case has been created:",
