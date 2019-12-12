@@ -22,7 +22,7 @@ exports.execute = (req, res) => {
         {
             subject: subject,
             description: description,
-            img__c : '<img src "'+ img + '" alt = "img">',
+            img__c : '<img src = "'+ img + '" alt = "img">',
             origin: "Slack",
             status: "New"
         })
