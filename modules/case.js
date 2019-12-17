@@ -15,14 +15,12 @@ exports.execute = (req, res) => {
         oauthObj = auth.getOAuthObject(slackUserId),
         params = req.body.text.split(":"),
         subject = params[0],
-        description = params[1],
-        img = params[2];
+        description = params[1];
 
     force.create(oauthObj, "Case",
         {
             subject: subject,
             description: description,
-            img__c : img,
             origin: "Slack",
             status: "New"
         })
