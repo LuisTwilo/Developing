@@ -46,6 +46,7 @@ exports.execute = (req, res) => {
             fields.push({title: "Subject", value: subject, short:false});
             fields.push({title: "Description", value: description, short:false});
             fields.push({title: "Record Type", value: caseRecordType, short:false});
+            fields.push({title: "Record Type", value: recordType, short:false});
             fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + data.id, short:false});
            
             let message = {
