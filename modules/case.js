@@ -25,20 +25,16 @@ exports.execute = (req, res) => {
                 if(data && data.lenght > 0){
                     let rType = JSON.parse(data);
                     caseRecordType = rType.id; 
-                    console.log(caseRecordType);
                    }
                 else{
                     caseRecordType = 'a';
-                    console.log(caseRecordType);
                 }
         }).catch((error)=>{
             if(error.code == 401){
                 caseRecordType = 'b';
-                console.log(caseRecordType);
             }
             else{
                 caseRecordType = 'c';
-                console.log(caseRecordType);
             }
         });
 
@@ -47,8 +43,8 @@ exports.execute = (req, res) => {
             subject: subject,
             description: description,
             origin: "Slack",
-            status: "New",
-            RecordTypeId: ""
+            status: "New"
+           // RecordTypeId: ""
         })
         .then(data => {
             let fields = [];
