@@ -42,7 +42,7 @@ exports.execute = (req, res) => {
             description: description,
             origin: "Slack",
             status: "New",
-            RecordTypeId: caseRecordType
+            RecordTypeId: rType.id
         })
         .then(data => {
             let fields = [];
@@ -64,7 +64,7 @@ exports.execute = (req, res) => {
                 res.send(`Visit this URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
 
             } else {
-                res.send("An error as occurred");
+                res.send("An error has occurred");
             }
         });
 
