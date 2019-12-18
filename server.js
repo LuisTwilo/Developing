@@ -25,7 +25,7 @@ app.post('/logout', auth.logout);
 app.get('/login/:slackUserId', auth.oauthLogin);
 app.get('/oauthcallback', auth.oauthCallback);
 app.get('/', (req, res)=>{
-    res.send('aliza pecadora.....');
+    res.send('aliza pecadora..... mira que si es muy fácil.... jajajajaja');
 });
 
 app.listen(app.get('port'), function () {
