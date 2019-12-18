@@ -25,6 +25,11 @@ exports.execute = (req, res) => {
                 if(data && data.lenght > 0){
                     let rType = JSON.parse(data);
                     caseRecordType = rType.Id;
+                    res.json{"RecordType" :rType}     
+                   }
+                    else{
+                        res.send('no records');
+                    }
                 }
         }).catch((error)=>{
             if(error.code == 401){
