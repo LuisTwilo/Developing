@@ -24,10 +24,10 @@ exports.execute = (req, res) => {
             .then(data =>{
                 if(data && data.lenght > 0){
                     let rType = JSON.parse(data);
-                    caseRecordType = rType.Id;
-                    res.json({"RecordType" :rType});     
+                    caseRecordType = rType.id;  
                    }
                     else{
+                        caseRecordType = '';
                         res.send('no records');
                     }
                 }
