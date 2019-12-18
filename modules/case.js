@@ -24,21 +24,21 @@ exports.execute = (req, res) => {
             .then(data =>{
                 if(data && data.lenght > 0){
                     let rType = JSON.parse(data);
-                    caseRecordType = rType.id;  
+                    caseRecordType = rType.id; 
+                    console.log(caseRecordType);
                    }
-                    else{
-                        caseRecordType = '';
-                        res.send('no records');
-                    }
+                else{
+                    caseRecordType = '';
+                    console.log(caseRecordType);
                 }
         }).catch((error)=>{
             if(error.code == 401){
                 caseRecordType = '';
-                 res.send('no records');
+                console.log(caseRecordType);
             }
             else{
                 caseRecordType = '';
-                res.send('no records');
+                console.log(caseRecordType);
             }
         });
 
