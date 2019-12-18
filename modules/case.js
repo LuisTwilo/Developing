@@ -22,8 +22,12 @@ exports.execute = (req, res) => {
        
     force.query(oauthObj, q)
             .then(data =>{
+            if(data && data.length >0){
                     let rType = JSON.parse(data).records;
-                    caseRecordType = rType.id; 
+                    caseRecordType = rType[0].id; 
+            }else{
+                caseRecordType = 'no records';
+                }
             }).catch((error)=>{
             if(error.code == 401){
                 caseRecordType = 'b';
