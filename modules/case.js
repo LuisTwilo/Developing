@@ -23,7 +23,7 @@ exports.execute = (req, res) => {
     force.query(oauthObj, q)
             .then(data =>{
                 if(data && data.lenght > 0){
-                    let rType = JSON.parse(data);
+                    let rType = JSON.parse(data).records;
                     caseRecordType = rType.id; 
                    }
                 else{
