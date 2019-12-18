@@ -24,6 +24,9 @@ app.post('/login', auth.loginLink);
 app.post('/logout', auth.logout);
 app.get('/login/:slackUserId', auth.oauthLogin);
 app.get('/oauthcallback', auth.oauthCallback);
+app.get('/', (req, res)=>{
+    res.send('aliza pecadora.....');
+});
 
 app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
