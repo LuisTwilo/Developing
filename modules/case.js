@@ -22,14 +22,16 @@ exports.execute = (req, res) => {
             subject: subject,
             description: description,
             origin: "Slack",
-            status: "New"
+            status: "New",
+            recordtypeid:"0128A000000DI4FQAW"
         })
         .then(data => {
             let fields = [];
             fields.push({title: "Subject", value: subject, short:false});
             fields.push({title: "Description", value: description, short:false});
+            fields.push({title: "case", value: data, short:false});
             fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + data.id, short:false});
-            fields.push({title: "RecordType Id:", value: data.RecordTypeId, short:false});
+           
             let message = {
                 text: "A new case has been created:",
                 attachments: [
