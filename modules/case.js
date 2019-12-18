@@ -17,7 +17,7 @@ exports.execute = (req, res) => {
         subject = params[0],
         description = params[1],
         recordType = params[2],
-        q = "SELECT id, Name FROM RecordType WHERE Name LIKE '%"+recordType+"%'",
+        q = "SELECT id FROM RecordType WHERE Name LIKE '%" + recordType + "%'",
         caseRecordType;
        
     force.query(oauthObj, q)
@@ -48,7 +48,7 @@ exports.execute = (req, res) => {
             description: description,
             origin: "Slack",
             status: "New",
-            RecordTypeId: caseRecordType
+            RecordTypeId: ""
         })
         .then(data => {
             let fields = [];
