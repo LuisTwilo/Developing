@@ -15,7 +15,16 @@ exports.execute = (req, res) => {
         oauthObj = auth.getOAuthObject(slackUserId),
         params = req.body.text.split(";"),
         subject = params[0],
-        description = params[1];
+        description = params[1],
+        recordType = params[2],
+        q = "SELECT id, Name FROM RecordType WHERE Name LIKE '%"+recordType+"%'";
+        force.query(oauthObj, q)
+            .then(data =>{
+                let rType = JSON.parse(data);
+                var caseRecordType = rType.id;
+        }).catch(error=>{
+            caseRecordType = '';
+        });
 
     force.create(oauthObj, "Case",
         {
@@ -23,7 +32,7 @@ exports.execute = (req, res) => {
             description: description,
             origin: "Slack",
             status: "New",
-            recordtypeid:"0128A000000DI4FQAW"
+            recordtypeid: caseRecordType;
         })
         .then(data => {
             let fields = [];
