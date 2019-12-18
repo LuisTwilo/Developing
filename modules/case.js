@@ -17,19 +17,22 @@ exports.execute = (req, res) => {
         subject = params[0],
         description = params[1],
         recordType = params[2],
-        q = "SELECT id, Name FROM RecordType WHERE Name LIKE '%"+recordType+"%'";
+        q = "SELECT id, Name FROM RecordType WHERE Name LIKE '%"+recordType+"%'",
+        caseRecordType = '';
        
     force.query(oauthObj, q)
             .then(data =>{
-                if(data||data.lenght >0){
+                if(data||data.lenght > 0){
                     let rType = JSON.parse(data);
-                    var caseRecordType = rType.Id;
-                }
-                else{
-                    caseRecordType = '';
+                    caseRecordType = rType.Id;
                 }
         }).catch((error)=>{
+            if(error.code == 401){
             caseRecordType = '';
+            }
+            else{
+                caseRecordType = '';
+            }
         });
 
     force.create(oauthObj, "Case",
