@@ -28,16 +28,16 @@ exports.execute = (req, res) => {
                     console.log(caseRecordType);
                    }
                 else{
-                    caseRecordType = '';
+                    caseRecordType = 'a';
                     console.log(caseRecordType);
                 }
         }).catch((error)=>{
             if(error.code == 401){
-                caseRecordType = '';
+                caseRecordType = 'b';
                 console.log(caseRecordType);
             }
             else{
-                caseRecordType = '';
+                caseRecordType = 'c';
                 console.log(caseRecordType);
             }
         });
