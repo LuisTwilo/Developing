@@ -29,6 +29,7 @@ exports.execute = (req, res) => {
             fields.push({title: "Subject", value: subject, short:false});
             fields.push({title: "Description", value: description, short:false});
             fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + data.id, short:false});
+            fields.push({title: "RecordType Id:", value: data.RecordTypeId, short:false});
             let message = {
                 text: "A new case has been created:",
                 attachments: [
