@@ -17,7 +17,7 @@ exports.execute = (req, res) => {
         subject = params[0],
         description = params[1],
         recordType = params[2],
-        q = "SELECT id FROM RecordType WHERE Name LIKE '%" + recordType + "%'",
+        q = "SELECT id,name FROM RecordType Where Name like '%" + recordType + "%'",
         caseRecordType;
        
     force.query(oauthObj, q)
@@ -27,7 +27,7 @@ exports.execute = (req, res) => {
                     caseRecordType = rType.id; 
                    }
                 else{
-                    caseRecordType = 'a';
+                    caseRecordType = 'rType.id';
                 }
         }).catch((error)=>{
             if(error.code == 401){
