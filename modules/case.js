@@ -18,18 +18,17 @@ exports.execute = (req, res) => {
         description = params[1],
         recordType = params[2],
         q = "SELECT id, Name FROM RecordType WHERE Name LIKE '%"+recordType+"%'",
-        caseRecordType = '',
-        rType;
+        caseRecordType;
        
     force.query(oauthObj, q)
             .then(data =>{
-                if(data||data.lenght > 0){
-                    rType = JSON.parse(data);
+                if(data && data.lenght > 0){
+                    let rType = JSON.parse(data);
                     caseRecordType = rType.Id;
                 }
         }).catch((error)=>{
             if(error.code == 401){
-            caseRecordType = '';
+                caseRecordType = '';
             }
             else{
                 caseRecordType = '';
@@ -42,13 +41,13 @@ exports.execute = (req, res) => {
             description: description,
             origin: "Slack",
             status: "New",
-            RecordTypeId: rType.id
+            RecordTypeId: caseRecordType
         })
         .then(data => {
             let fields = [];
             fields.push({title: "Subject", value: subject, short:false});
             fields.push({title: "Description", value: description, short:false});
-            fields.push({title: "Record Type", value: rType.id, short:false})
+            fields.push({title: "Record Type", value: caseRecordType, short:false});
             fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + data.id, short:false});
            
             let message = {
