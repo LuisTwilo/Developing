@@ -21,16 +21,14 @@ exports.execute = (req, res) => {
     
     if(params[2]){ 
         let recordType = params[2].trim(),
-            q = "SELECT id,name FROM RecordType Where Name like '%" + recordType + "%'";
+            q = "SELECT id,name FROM RecordType Where Name like '%" + recordType + "%' LIMIT 1";
             
         force.query(oauthObj, q)
                 .then(data =>{
                    let rTypes = JSON.parse(data).records;
                    if(rTypes && rTypes.length>0){
-                       // rTypes.forEach((rType) => {
                             caseRecordType = rTypes[0].Id;
                             rtName = rTypes[0].Name;
-                       // });
                     }    
                 else{
                     caseRecordType = '';
@@ -49,8 +47,8 @@ exports.execute = (req, res) => {
             subject: subject,
             description: rtName,
             origin: "Slack",
-            status: "New",
-            RecordTypeId: caseRecordType
+            status: "New"
+           // RecordTypeId: caseRecordType
         }
 
     force.create(oauthObj, "Case",caseJson)
