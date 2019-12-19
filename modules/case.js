@@ -16,7 +16,7 @@ exports.execute = (req, res) => {
         params = req.body.text.split(";"),
         subject = params[0],
         description = params[1],
-        caseRecordType = '0128A000000DI4AQAW',
+        caseRecordType = '',
         rtName = 'Undefined',
         state = 'not created';
     
@@ -52,7 +52,7 @@ exports.execute = (req, res) => {
             description: rtName,
             origin: "Slack",
             status: "New",
-            RecordTypeId: caseRecordType
+            RecordTypeId: '"'+caseRecordType+'"'
         }
 
     force.create(oauthObj, "Case",caseJson)
