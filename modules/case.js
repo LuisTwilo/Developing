@@ -18,7 +18,7 @@ exports.execute = (req, res) => {
         description = params[1],
         recordType = params[2].trim(),
         q = "SELECT id,name FROM RecordType Where Name like '%" + recordType + "%'",
-        caseRecordType;
+        caseRecordType = '';
     
     if(params[2]){ 
     force.query(oauthObj, q)
@@ -48,7 +48,7 @@ exports.execute = (req, res) => {
             description: description,
             origin: "Slack",
             status: "New",
-            //RecordTypeId: caseRecordType
+            RecordTypeId: caseRecordType
         })
         .then(data => {
             let fields = [];
