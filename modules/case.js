@@ -25,7 +25,7 @@ exports.execute = (req, res) => {
             
         force.query(oauthObj, q)
                 .then(data =>{
-                    let rTypes = JSON.parse(data).records;
+                   let rTypes = JSON.parse(data).records;
                    if(rTypes && rTypes.length>0){
                        // rTypes.forEach((rType) => {
                             caseRecordType = rTypes[0].Id;
@@ -44,24 +44,22 @@ exports.execute = (req, res) => {
                 }
             });
         }
-
-    let caseRtF = caseRecordType,
-        rtNameF = rtName;
-   
-    force.create(oauthObj, "Case",
-        {
+    
+    let caseJson =   {
             subject: subject,
-            description: rtNameF,
+            description: rtName,
             origin: "Slack",
             status: "New",
-            RecordTypeId: caseRtF
-        })
+            RecordTypeId: caseRecordType,
+        }
+
+    force.create(oauthObj, "Case",caseJson)
         .then(data => {
             let fields = [];
             fields.push({title: "Subject", value: subject, short:false});
             fields.push({title: "Description", value: description, short:false});
-            fields.push({title: "Record Type id", value: caseRtF, short:false});
-            fields.push({title: "Record Type", value: rtNameF, short:false});
+            fields.push({title: "Record Type id", value: caseRecordType, short:false});
+            fields.push({title: "Record Type", value: rtName, short:false});
             fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + data.id, short:false});
            
             let message = {
