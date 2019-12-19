@@ -21,7 +21,7 @@ exports.execute = (req, res) => {
         state = 'not created';
     
     if(params[2]){ 
-        let recordType = params[2].trim(),
+        var recordType = params[2].trim(),
             q = "SELECT id,name FROM RecordType Where Name like '%" + recordType + "%' LIMIT 1";
             
         force.query(oauthObj, q)
