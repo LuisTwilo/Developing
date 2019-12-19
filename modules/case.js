@@ -29,14 +29,14 @@ exports.execute = (req, res) => {
                     });
                 }    
             else{
-                caseRecordType = 'no records';
+                caseRecordType = '';
                 }
             }).catch((error)=>{
             if(error.code == 401){
-                caseRecordType = 'b';
+                caseRecordType = '';
             }
             else{
-                caseRecordType = 'c';
+                caseRecordType = '';
             }
         });
 
@@ -45,8 +45,8 @@ exports.execute = (req, res) => {
             subject: subject,
             description: description,
             origin: "Slack",
-            status: "New"
-           // RecordTypeId: ""
+            status: "New",
+            RecordTypeId: caseRecordType
         })
         .then(data => {
             let fields = [];
