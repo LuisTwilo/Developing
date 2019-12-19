@@ -18,7 +18,7 @@ exports.execute = (req, res) => {
         description = params[1],
         caseRecordType = 'a',
         rtName = 'Undefined',
-        state = 'created';
+        state = 'not created';
     
     if(params[2]){ 
         let recordType = params[2].trim(),
@@ -30,6 +30,7 @@ exports.execute = (req, res) => {
                    if(rTypes && rTypes.length>0){
                             caseRecordType = rTypes[0].Id;
                             rtName = rTypes[0].Name;
+                            state = 'created';
                     }    
                 else{
                     caseRecordType = '';
