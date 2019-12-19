@@ -47,7 +47,7 @@ exports.execute = (req, res) => {
             });
         }
     
-    let caseJson =   {
+    var caseJson =   {
             subject: subject,
             description: rtName,
             origin: "Slack",
