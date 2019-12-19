@@ -19,7 +19,8 @@ exports.execute = (req, res) => {
         recordType = params[2].trim(),
         q = "SELECT id,name FROM RecordType Where Name like '%" + recordType + "%'",
         caseRecordType;
-       
+    
+    if(params[2]){ 
     force.query(oauthObj, q)
             .then(data =>{
                 let rTypes = JSON.parse(data).records;
@@ -39,6 +40,7 @@ exports.execute = (req, res) => {
                 caseRecordType = '';
             }
         });
+    }
 
     force.create(oauthObj, "Case",
         {
