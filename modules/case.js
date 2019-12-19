@@ -17,7 +17,8 @@ exports.execute = (req, res) => {
         subject = params[0],
         description = params[1],
         caseRecordType = 'a',
-        rtName = 'Undefined';
+        rtName = 'Undefined',
+        state = 'created';
     
     if(params[2]){ 
         let recordType = params[2].trim(),
@@ -35,10 +36,12 @@ exports.execute = (req, res) => {
                     }
                 }).catch((error)=>{
                 if(error.code == 401){
-                    caseRecordType = 'c';
+                    caseRecordType = '';
+                    state = 'not created error: 401';
                 }
                 else{
-                    caseRecordType = 'd';
+                    caseRecordType = '';
+                    state = 'not created error: undefined';
                 }
             });
         }
@@ -58,6 +61,7 @@ exports.execute = (req, res) => {
             fields.push({title: "Description", value: description, short:false});
             fields.push({title: "Record Type id", value: caseRecordType, short:false});
             fields.push({title: "Record Type", value: rtName, short:false});
+            fields.push({title: "state", value: state, short:false});
             fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + data.id, short:false});
            
             let message = {
