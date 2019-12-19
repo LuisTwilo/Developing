@@ -15,8 +15,8 @@ exports.execute = (req, res) => {
         oauthObj = auth.getOAuthObject(slackUserId),
         params = req.body.text.split(";"),
         subject = params[0],
-        description = params[1];
-     var caseRecordType = '',
+        description = params[1],
+        caseRecordType = '',
         rtName = 'Undefined';
     
     if(params[2]){ 
@@ -45,20 +45,23 @@ exports.execute = (req, res) => {
             });
         }
 
+    let caseRtF = caseRecordType,
+        rtNameF = rtName;
+   
     force.create(oauthObj, "Case",
         {
             subject: subject,
-            description: rtName,
+            description: rtNameF,
             origin: "Slack",
             status: "New",
-            RecordTypeId: "0128A000000DTUpQAO"
+            RecordTypeId: caseRtF
         })
         .then(data => {
             let fields = [];
             fields.push({title: "Subject", value: subject, short:false});
             fields.push({title: "Description", value: description, short:false});
-            fields.push({title: "Record Type id", value: caseRecordType, short:false});
-            fields.push({title: "Record Type", value: rtName, short:false});
+            fields.push({title: "Record Type id", value: caseRtF, short:false});
+            fields.push({title: "Record Type", value: rtNameF, short:false});
             fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + data.id, short:false});
            
             let message = {
