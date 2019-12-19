@@ -16,7 +16,7 @@ exports.execute = (req, res) => {
         params = req.body.text.split(";"),
         subject = params[0],
         description = params[1],
-        caseRecordType = '',
+        caseRecordType = 'a',
         rtName = 'Undefined';
     
     if(params[2]){ 
