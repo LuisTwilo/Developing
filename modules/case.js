@@ -51,7 +51,7 @@ exports.execute = (req, res) => {
             description: description,
             origin: "Slack",
             status: "New",
-            recordtypeid: caseRecordType
+            RecordTypeId: caseRecordType
         })
         .then(data => {
             let fields = [];
