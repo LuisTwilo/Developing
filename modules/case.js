@@ -33,14 +33,14 @@ exports.execute = (req, res) => {
                         });
                     }    
                 else{
-                    caseRecordType = '';
+                    caseRecordType = '0128A000000DI4AQAW';
                     }
                 }).catch((error)=>{
                 if(error.code == 401){
-                    caseRecordType = '';
+                    caseRecordType = '0128A000000DI4AQAW';
                 }
                 else{
-                    caseRecordType = '';
+                    caseRecordType = '0128A000000DI4AQAW';
                 }
             });
         }
