@@ -16,33 +16,34 @@ exports.execute = (req, res) => {
         params = req.body.text.split(";"),
         subject = params[0],
         description = params[1],
-        recordType = params[2].trim(),
-        q = "SELECT id,name FROM RecordType Where Name like '%" + recordType + "%'",
         caseRecordType = '',
         rtName = 'Undefined';
     
     if(params[2]){ 
-    force.query(oauthObj, q)
-            .then(data =>{
-                let rTypes = JSON.parse(data).records;
-                if(rTypes && rTypes.length>0){
-                    rTypes.forEach((rType) => {
-                        caseRecordType = rType.Id;
-                        rtName = rType.Name;
-                    });
-                }    
-            else{
-                caseRecordType = '';
+        let recordType = params[2].trim(),
+            q = "SELECT id,name FROM RecordType Where Name like '%" + recordType + "%'";
+            
+        force.query(oauthObj, q)
+                .then(data =>{
+                    let rTypes = JSON.parse(data).records;
+                    if(rTypes && rTypes.length>0){
+                        rTypes.forEach((rType) => {
+                            caseRecordType = rType.Id;
+                            rtName = rType.Name;
+                        });
+                    }    
+                else{
+                    caseRecordType = '';
+                    }
+                }).catch((error)=>{
+                if(error.code == 401){
+                    caseRecordType = '';
                 }
-            }).catch((error)=>{
-            if(error.code == 401){
-                caseRecordType = '';
-            }
-            else{
-                caseRecordType = '';
-            }
-        });
-    }
+                else{
+                    caseRecordType = '';
+                }
+            });
+        }
 
     force.create(oauthObj, "Case",
         {
