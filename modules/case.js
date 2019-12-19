@@ -28,7 +28,7 @@ exports.execute = (req, res) => {
                     let rTypes = JSON.parse(data).records;
                     if(rTypes && rTypes.length>0){
                         rTypes.forEach((rType) => {
-                            caseRecordType = rType.id;
+                            caseRecordType = rType.Id;
                             rtName = rType.Name;
                         });
                     }    
