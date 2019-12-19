@@ -16,7 +16,7 @@ exports.execute = (req, res) => {
         params = req.body.text.split(";"),
         subject = params[0],
         description = params[1],
-        caseRecordType = '0128A000000DI4AQAW',
+        caseRecordType = '',
         rtName = 'Undefined';
     
     if(params[2]){ 
@@ -33,7 +33,7 @@ exports.execute = (req, res) => {
                         });
                     }    
                 else{
-                    caseRecordType = '0128A000000DI4AQAW';
+                    caseRecordType = '';
                     }
                 }).catch((error)=>{
                 if(error.code == 401){
@@ -51,7 +51,7 @@ exports.execute = (req, res) => {
             description: description,
             origin: "Slack",
             status: "New",
-            //RecordTypeId: caseRecordType
+            RecordTypeId: caseRecordType
         })
         .then(data => {
             let fields = [];
