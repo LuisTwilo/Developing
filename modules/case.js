@@ -28,19 +28,19 @@ exports.execute = (req, res) => {
                     let rTypes = JSON.parse(data).records;
                     if(rTypes && rTypes.length>0){
                         rTypes.forEach((rType) => {
-                            caseRecordType = rType.Id;
+                            caseRecordType = rType.id;
                             rtName = rType.Name;
                         });
                     }    
                 else{
-                    caseRecordType = '0128A000000DI4AQAW';
+                    caseRecordType = '';
                     }
                 }).catch((error)=>{
                 if(error.code == 401){
-                    caseRecordType = '0128A000000DI4AQAW';
+                    caseRecordType = '';
                 }
                 else{
-                    caseRecordType = '0128A000000DI4AQAW';
+                    caseRecordType = '';
                 }
             });
         }
@@ -57,6 +57,7 @@ exports.execute = (req, res) => {
             let fields = [];
             fields.push({title: "Subject", value: subject, short:false});
             fields.push({title: "Description", value: description, short:false});
+            fields.push({title: "Record Type id", value: caseRecordType, short:false});
             fields.push({title: "Record Type", value: rtName, short:false});
             fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + data.id, short:false});
            
