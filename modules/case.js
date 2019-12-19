@@ -24,11 +24,11 @@ exports.execute = (req, res) => {
             .then(data =>{
                 let rTypes = JSON.parse(data).records;
                 if(rTypes && rTypes.length>0){
-                    rTypes.forEach(rType =>{
+                    rTypes.forEach((rType) => {
                         caseRecordType = rType.Id;
                     });
                 }    
-            }else{
+            else{
                 caseRecordType = 'no records';
                 }
             }).catch((error)=>{
