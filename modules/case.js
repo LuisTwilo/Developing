@@ -16,7 +16,7 @@ exports.execute = (req, res) => {
         params = req.body.text.split(";"),
         subject = params[0],
         description = params[1],
-        recordType = params[2],
+        recordType = params[2].trim(),
         q = "SELECT id,name FROM RecordType Where Name like '%" + recordType + "%'",
         caseRecordType;
        
