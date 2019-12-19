@@ -18,7 +18,8 @@ exports.execute = (req, res) => {
         description = params[1],
         recordType = params[2].trim(),
         q = "SELECT id,name FROM RecordType Where Name like '%" + recordType + "%'",
-        caseRecordType = '';
+        caseRecordType = '',
+        rtName = 'Undefined';
     
     if(params[2]){ 
     force.query(oauthObj, q)
@@ -27,6 +28,7 @@ exports.execute = (req, res) => {
                 if(rTypes && rTypes.length>0){
                     rTypes.forEach((rType) => {
                         caseRecordType = rType.Id;
+                        rtName = rType.Name;
                     });
                 }    
             else{
@@ -54,8 +56,7 @@ exports.execute = (req, res) => {
             let fields = [];
             fields.push({title: "Subject", value: subject, short:false});
             fields.push({title: "Description", value: description, short:false});
-            fields.push({title: "Record Type", value: caseRecordType, short:false});
-            fields.push({title: "Record Type", value: recordType, short:false});
+            fields.push({title: "Record Type", value: rtName, short:false});
             fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + data.id, short:false});
            
             let message = {
