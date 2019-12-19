@@ -26,12 +26,12 @@ exports.execute = (req, res) => {
         force.query(oauthObj, q)
                 .then(data =>{
                     let rTypes = JSON.parse(data).records;
-                   // if(rTypes && rTypes.length>0){
+                   if(rTypes && rTypes.length>0){
                        // rTypes.forEach((rType) => {
                             caseRecordType = rTypes[0].Id;
                             rtName = rTypes[0].Name;
                        // });
-                    //}    
+                    }    
                 else{
                     caseRecordType = '';
                     }
