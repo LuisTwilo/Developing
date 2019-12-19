@@ -26,7 +26,7 @@ exports.execute = (req, res) => {
             
         force.query(oauthObj, q)
                 .then(data =>{
-                   let rTypes = JSON.parse(data).records;
+                   var rTypes = JSON.parse(data).records;
                    if(rTypes && rTypes.length>0){
                             caseRecordType = rTypes[0].Id;
                             rtName = rTypes[0].Name;
@@ -51,8 +51,8 @@ exports.execute = (req, res) => {
             subject: subject,
             description: rtName,
             origin: "Slack",
-            status: "New"
-           // RecordTypeId: caseRecordType
+            status: "New",
+            RecordTypeId: caseRecordType
         }
 
     force.create(oauthObj, "Case",caseJson)
