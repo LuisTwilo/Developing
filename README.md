@@ -55,5 +55,5 @@ the app but you can name it as you want
     - Click on "Save"
     - Copy the **Verification Token** you can find it on the basic information menu, open another browser tab, login to the Heroku Dashboard, and set the Heroku **SLACK_CASE_TOKEN** config           variable to the value of that token (**Setting>Reveal Config Vars**)
     
-    Click **Save Integration**.
+    
    
