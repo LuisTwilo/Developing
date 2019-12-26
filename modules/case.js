@@ -21,7 +21,7 @@ exports.execute = (req, res) => {
         {
             subject: subject,
             description: description,
-            origin: "Slack",
+           // origin: "Slack",
             status: "New"
             //recordtypeid:"01256000000ttAxAAI"
         })
