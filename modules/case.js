@@ -23,7 +23,7 @@ exports.execute = (req, res) => {
             description: description,
             origin: "Slack",
             status: "New",
-            recordtypeid:"0128A000000DI4AQAW"
+            recordtypeid:"01256000000ttAxAAI"
         })
         .then(data => {
             let fields = [];
