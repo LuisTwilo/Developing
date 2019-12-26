@@ -20,7 +20,7 @@ exports.execute = (req, res) => {
     force.create(oauthObj, "Case",
         {
             subject: subject,
-            description: description,
+            //description: description,
            // origin: "Slack",
             status: "New"
             //recordtypeid:"01256000000ttAxAAI"
